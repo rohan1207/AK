@@ -180,7 +180,7 @@ const CircularProjectGallery = () => {
             </h2>
             {hoveredIndex !== null && (
               <p className="description">
-                {centerImage?.description || "Project description"}
+              
               </p>
             )}
           </div>
