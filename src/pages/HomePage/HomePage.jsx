@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { useNavigate } from "react-router-dom";
 import { useToggleRoomStore } from "../../stores/toggleRoomStore";
+import { useExperienceStore } from "../../stores/experienceStore";
 import "./HomePage.scss";
 
 // Register GSAP plugins
@@ -16,29 +17,32 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const { setDarkRoom, setIsBeforeZooming } = useToggleRoomStore();
+  const { isExperienceReady } = useExperienceStore();
 
   // Set light room mode and make sure room is visible
   useEffect(() => {
     setDarkRoom(false); // Ensure light mode
     setIsBeforeZooming(false);
 
-    // Show hero content after a short delay
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 500);
+    if (isExperienceReady) {
+      // Show hero content after a short delay
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 500);
 
-    // Cleanup function
-    return () => {
-      clearTimeout(timer);
-      // Kill any ongoing GSAP animations when component unmounts
-      gsap.killTweensOf(heroTitleRef.current);
-      gsap.killTweensOf(heroContentRef.current);
-    };
-  }, []);
+      // Cleanup function
+      return () => {
+        clearTimeout(timer);
+        // Kill any ongoing GSAP animations when component unmounts
+        gsap.killTweensOf(heroTitleRef.current);
+        gsap.killTweensOf(heroContentRef.current);
+      };
+    }
+  }, [isExperienceReady]);
 
   // Text animation effect
   useEffect(() => {
-    if (!heroTitleRef.current) return;
+    if (!heroTitleRef.current || !isVisible) return;
 
     const titles = ["Architecture", "Innovation", "Design", "Excellence"];
     let currentIndex = 0;
@@ -72,7 +76,7 @@ const HomePage = () => {
       clearInterval(interval);
       gsap.killTweensOf(heroTitleRef.current);
     };
-  }, []); // Handle scroll events
+  }, [isVisible]); // Handle scroll events
   useEffect(() => {
     const preventScroll = (e) => {
       // Only prevent scroll on the main homepage, not nested components
@@ -94,6 +98,7 @@ const HomePage = () => {
     };
   }, []);
 
+  // Only render content when isVisible is true
   return (
     <div className="homepage" ref={homepageRef}>
       <div className="hero-section">

@@ -28,6 +28,7 @@ const LoadingScreen = () => {
   const { setIsExperienceReady } = useExperienceStore();
   const [onlyOnce, setOnlyOnce] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [allowTransition, setAllowTransition] = useState(false);
 
   useEffect(() => {
     // Hide menu during loading
@@ -46,21 +47,29 @@ const LoadingScreen = () => {
         .to({}, { duration: 0.5 }); // Pause on each word
     });
 
+    // Make sure all content is loaded
+    if (progress >= 100) {
+      setTimeout(() => setAllowTransition(true), 1000);
+    }
+
     return () => {
       textTimeline.kill();
-      // Show menu after loading
       document
         .querySelector(".menu")
         ?.classList.remove("hidden-during-loading");
     };
-  }, []);
+  }, [progress]);
 
   useEffect(() => {
-    if (progress >= 99 && !onlyOnce) {
+    // Only proceed with exit animation when both loading is done and transition is allowed
+    if (progress >= 99 && allowTransition && !onlyOnce) {
       setOnlyOnce(true);
-      setIsExperienceReady();
 
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsExperienceReady();
+        },
+      });
 
       tl.to(messageRef.current, {
         yPercent: -50,
@@ -78,7 +87,7 @@ const LoadingScreen = () => {
         "<"
       );
     }
-  }, [progress]);
+  }, [progress, allowTransition, onlyOnce]);
 
   if (!isVisible) return null;
 

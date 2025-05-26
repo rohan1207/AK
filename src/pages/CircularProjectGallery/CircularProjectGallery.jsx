@@ -176,7 +176,7 @@ const CircularProjectGallery = () => {
                 : "Xiaomeisha Transport"}
             </h1> */}
             <h2 className="sub-title">
-              {hoveredIndex !== null ? "Gallery" : "Centre"}
+              {hoveredIndex !== null ? "" : ""}
             </h2>
             {hoveredIndex !== null && (
               <p className="description">

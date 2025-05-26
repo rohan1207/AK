@@ -31,8 +31,15 @@ function Loader() {
   return (
     <Html center>
       <div className="model-loader">
-        <div className="loader-spinner"></div>
-        <p>Loading 3D Model...</p>
+        <img
+          src="/images/alt.png"
+          alt="Loading placeholder"
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            objectFit: "contain",
+          }}
+        />
       </div>
     </Html>
   );
