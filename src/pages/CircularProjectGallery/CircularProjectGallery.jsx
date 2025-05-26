@@ -170,11 +170,11 @@ const CircularProjectGallery = () => {
         <div className="gallery-container">
           {/* Center Content */}
           <div className="center-content">
-            <h1 className="main-title">
+            {/* <h1 className="main-title">
               {hoveredIndex !== null
                 ? centerImage?.title || `Project ${hoveredIndex + 1}`
                 : "Xiaomeisha Transport"}
-            </h1>
+            </h1> */}
             <h2 className="sub-title">
               {hoveredIndex !== null ? "Gallery" : "Centre"}
             </h2>
@@ -190,7 +190,7 @@ const CircularProjectGallery = () => {
             <div className="center-image">
               <img
                 src={centerImage.url}
-                alt={centerImage.title || "Center project"}
+                // alt={centerImage.title || "Center project"}
                 className="center-img"
               />
               <div className="center-overlay">
