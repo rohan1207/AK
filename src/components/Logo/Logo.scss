@@ -1,0 +1,30 @@
+.logo {
+ 
+    position: fixed;
+    top: -5%;
+    left: -21px;
+    z-index: 40;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: 60606;
+    padding: 14px 10px;
+    font-size: 16px;
+    font-weight: lighter;
+   
+  
+
+
+  @media (max-width: 768px) {
+    left: 32px;
+    top: 32px;
+  }
+}
+.logo img {
+
+  height: 170px;
+    width: 280px;
+
+}

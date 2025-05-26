@@ -1,0 +1,64 @@
+.toggle-button {
+  position: fixed;
+  bottom: 57px;
+  right: 48px;
+  z-index: 40;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    bottom: 50px;
+    right: 32px;
+    width: 42px;
+    height: 42px;
+  }
+
+  i {
+    font-size: 24px;
+    color: #fff;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: rgba(0, 0, 0, 0.3);
+
+    i {
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5));
+    }
+  }
+
+  &.light {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    i {
+      color: #ffd700;
+      filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 1);
+
+      i {
+        filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.7));
+      }
+    }
+  }
+}

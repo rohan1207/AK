@@ -1,0 +1,255 @@
+// Modern and clean styling for the homepage hero section
+.homepage {
+  position: fixed; 
+  z-index: 5; // Decreased z-index to ensure it doesn't block the menu (which has z-index 9999)
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  pointer-events: none; // Allow clicks to pass through to the 3D elements
+  overflow: hidden;
+
+
+  // Decorative elements
+  .decorative-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0.15;
+    pointer-events: none;
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+
+      &.circle-1 {
+        width: 200px;
+        height: 200px;
+        left: 15%;
+        top: 20%;
+        border-width: 2px;
+      }
+
+      &.circle-2 {
+        width: 300px;
+        height: 300px;
+        left: 5%;
+        bottom: 10%;
+        border-width: 1px;
+      }
+    }
+
+    .line {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.1);
+
+      &.line-1 {
+        width: 1px;
+        height: 20vh;
+        left: 30%;
+        top: 10%;
+      }
+
+      &.line-2 {
+        width: 15vw;
+        height: 1px;
+        left: 5%;
+        top: 40%;
+      }
+    }
+  }  .hero-section {
+    position: fixed; // Changed from absolute to fixed
+    top: 0;
+    left: 0;
+    width: 45%; // Take up left half of screen
+    height: 100vh;
+    padding-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    pointer-events: auto; // Enable interactions with the hero section
+    z-index: 6; // Adjusted to be lower than menu (9999) but higher than base homepage (5)
+  }
+
+  .hero-content {
+    max-width: 550px;
+    position: relative;
+    margin-top: 2rem;
+    
+    @media (max-width: 768px) {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  .company-name {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #333 0%, #777 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    
+    @media (max-width: 768px) {
+      font-size: 2.2rem;
+    }
+  }
+
+  .tagline-container {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+    height: 3.8rem;
+    display: flex;
+    align-items: flex-start;
+    letter-spacing: -0.5px;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+      height: 2.8rem;
+    }
+  }
+
+  .static-text {
+    color: #333;
+  }
+
+  .dynamic-text {
+    background: linear-gradient(90deg, #222 0%, #555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 0.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: #555;
+    max-width: 90%;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  .cta-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.9rem 1.8rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+   
+    
+    &.primary {
+      background: linear-gradient(90deg, #333 0%, #555 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      
+      &:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
+    
+    &.secondary {
+      background: transparent;
+      color: #333;
+      border: 1px solid #ccc;
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+    
+    .arrow {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover .arrow {
+      transform: translateX(4px);
+    }
+  }
+
+  // Stats container
+  .stats-container {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 1rem;
+    
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #333;
+      }
+      
+      .stat-label {
+        font-size: 0.9rem;
+        color: #777;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      
+      .stat-item {
+        .stat-number {
+          font-size: 1.5rem;
+        }
+        
+        .stat-label {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+  // Media query for mobile view
+  @media (max-width: 992px) {
+    .hero-section {
+      width: 100%;
+      padding: 0 5%;
+      background-color: rgba(255, 255, 255, 0.95); // More opaque background
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px); // For Safari support
+    }
+    
+    // Add extra height to prevent content from being hidden
+    .hero-content {
+      padding-bottom: 120px;
+    }
+  }
+}
+
+// Media query specifically for shorter screens
+@media (max-height: 700px) {
+  .homepage .hero-section {
+    padding-top: 80px;
+    justify-content: flex-start;
+    overflow-y: auto; // Allow scrolling within the hero section on small screens
+    
+    .hero-content {
+      padding-bottom: 100px;
+    }
+  }
+}
